@@ -11,11 +11,13 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
+        "laravel/mcp": "^0.3.4",
         "laravel/prompts": "^0.3.8",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "pgvector/pgvector": "^0.2.2",
         "prism-php/prism": "^0.98.5",
+        "prism-php/relay": "^1.4",
         "smalot/pdfparser": "^2.12",
         "spatie/pdf-to-text": "^1.55",
         "thiagoalessio/tesseract_ocr": "^2.13"

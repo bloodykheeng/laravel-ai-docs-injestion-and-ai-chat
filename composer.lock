@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "91ed22de2880db7d14997cd05757f1a8",
+    "content-hash": "4e51a6207737259ec86eef7082e99927",
     "packages": [
         {
             "name": "brick/math",
@@ -1270,6 +1270,79 @@
                 "source": "https://github.com/laravel/framework"
             },
             "time": "2025-11-26T19:24:25+00:00"
+        },
+        {
+            "name": "laravel/mcp",
+            "version": "v0.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/mcp.git",
+                "reference": "0b86fb613a0df971cec89271c674a677c2cb4f77"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/mcp/zipball/0b86fb613a0df971cec89271c674a677c2cb4f77",
+                "reference": "0b86fb613a0df971cec89271c674a677c2cb4f77",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "illuminate/console": "^10.49.0|^11.45.3|^12.28.1",
+                "illuminate/container": "^10.49.0|^11.45.3|^12.28.1",
+                "illuminate/contracts": "^10.49.0|^11.45.3|^12.28.1",
+                "illuminate/http": "^10.49.0|^11.45.3|^12.28.1",
+                "illuminate/json-schema": "^12.28.1",
+                "illuminate/routing": "^10.49.0|^11.45.3|^12.28.1",
+                "illuminate/support": "^10.49.0|^11.45.3|^12.28.1",
+                "illuminate/validation": "^10.49.0|^11.45.3|^12.28.1",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "laravel/pint": "1.20.0",
+                "orchestra/testbench": "^8.36.0|^9.15.0|^10.6.0",
+                "pestphp/pest": "^2.36.0|^3.8.4|^4.1.0",
+                "phpstan/phpstan": "^2.1.27",
+                "rector/rector": "^2.2.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Mcp": "Laravel\\Mcp\\Server\\Facades\\Mcp"
+                    },
+                    "providers": [
+                        "Laravel\\Mcp\\Server\\McpServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Mcp\\": "src/",
+                    "Laravel\\Mcp\\Server\\": "src/Server/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Rapidly build MCP servers for your Laravel applications.",
+            "homepage": "https://github.com/laravel/mcp",
+            "keywords": [
+                "laravel",
+                "mcp"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/mcp/issues",
+                "source": "https://github.com/laravel/mcp"
+            },
+            "time": "2025-11-18T14:41:05+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -2796,6 +2869,78 @@
                 }
             ],
             "time": "2025-11-22T19:19:11+00:00"
+        },
+        {
+            "name": "prism-php/relay",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/prism-php/relay.git",
+                "reference": "13fcdb664695f70c30d8c8e121b246bb194ffe31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/prism-php/relay/zipball/13fcdb664695f70c30d8c8e121b246bb194ffe31",
+                "reference": "13fcdb664695f70c30d8c8e121b246bb194ffe31",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^11.0|^12.0",
+                "php": "^8.2",
+                "prism-php/prism": ">=0.56 ^0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^7.8",
+                "laravel/pint": "^1.14",
+                "mockery/mockery": "^1.6",
+                "orchestra/testbench": "^10.0",
+                "pestphp/pest": "^3.0",
+                "pestphp/pest-plugin-arch": "^3.0",
+                "pestphp/pest-plugin-laravel": "^3.0",
+                "phpstan/extension-installer": "^1.3",
+                "phpstan/phpstan": "^1.11",
+                "phpstan/phpstan-deprecation-rules": "^1.2",
+                "projektgopher/whisky": "^0.7.0",
+                "rector/rector": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Relay": "Prism\\Relay\\Facades\\Relay"
+                    },
+                    "providers": [
+                        "Prism\\Relay\\RelayServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Prism\\Relay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "TJ MIller",
+                    "email": "hello@echolabs.dev"
+                }
+            ],
+            "description": "A Prism tool for interacting with MCP servers",
+            "support": {
+                "issues": "https://github.com/prism-php/relay/issues",
+                "source": "https://github.com/prism-php/relay/tree/v1.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sixlive",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-11-11T22:44:41+00:00"
         },
         {
             "name": "psr/clock",

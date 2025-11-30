@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mcp\Tools\GetDocumentStatsTool;
 use App\Models\Document;
 use App\Models\DocumentChunk;
 use Exception;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use Pgvector\Laravel\Distance;
 use Prism\Prism\Enums\Provider;
 use Prism\Prism\Facades\Prism;
+use Prism\Relay\Facades\Relay;
 
 class ChatController extends Controller
 {
@@ -31,6 +33,9 @@ class ChatController extends Controller
             $question = $request->input('question');
             $documentName = $request->input('document_name');
             $chunkingStrategy = $request->input('chunking_strategy');
+
+            // Get the MCP tool
+            $docStatsTool = Relay::tools('documents');
 
             // Generate embedding for the question
             $questionEmbedding = $this->generateEmbedding($question);
@@ -69,7 +74,9 @@ class ChatController extends Controller
             // Ask AI using Prism
             $prompt = "Based on the following context, answer the question.\n\nContext:\n{$context}\n\nQuestion: {$question}\n\nAnswer:";
 
-            $aiResponse = $this->generateText($prompt);
+            // $aiResponse = $this->generateText($prompt);
+
+            $aiResponse = $this->generateText($prompt, [...$docStatsTool]);
 
             return response()->json([
                 'success' => true,
@@ -102,12 +109,27 @@ class ChatController extends Controller
         return $response->embeddings[0]->embedding;
     }
 
-    private function generateText(string $prompt): string
+    // private function generateText(string $prompt): string
+    // {
+    //     $response = Prism::text()
+    //         ->using(Provider::from($this->provider), $this->model)
+    //         ->withPrompt($prompt)
+    //         ->asText();
+
+    //     return $response->text;
+    // }
+
+    private function generateText(string $prompt, array $tools = []): string
     {
-        $response = Prism::text()
+        $prism = Prism::text()
             ->using(Provider::from($this->provider), $this->model)
-            ->withPrompt($prompt)
-            ->asText();
+            ->withPrompt($prompt);
+
+        if (!empty($tools)) {
+            $prism->withMaxSteps(3)->withTools($tools);
+        }
+
+        $response = $prism->asText();
 
         return $response->text;
     }
