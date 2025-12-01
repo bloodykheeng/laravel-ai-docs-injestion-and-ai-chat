@@ -15,10 +15,16 @@ use Prism\Relay\Facades\Relay;
 
 class ChatController extends Controller
 {
-    private string $provider = 'ollama';
+
+    private string $embeddingProvider = 'ollama';
     private string $embeddingModel = 'embeddinggemma';
+    // private string $provider = 'ollama';
     // private string $model = 'gpt-oss:120b-cloud';
-    private string $model = 'qwen3-coder:480b-cloud';
+    // private string $model = 'qwen3-coder:480b-cloud';
+    // private string $model = 'claude-sonnet-4-5-20250929';
+    private string $provider = 'anthropic';
+    private string $model = 'claude-sonnet-4-5';
+
 
 
     public function askAboutDocs(Request $request)
@@ -102,7 +108,7 @@ class ChatController extends Controller
     private function generateEmbedding(string $text): array
     {
         $response = Prism::embeddings()
-            ->using(Provider::from($this->provider), $this->embeddingModel)
+            ->using(Provider::from($this->embeddingProvider), $this->embeddingModel)
             ->fromArray([$text])
             ->asEmbeddings();
 
