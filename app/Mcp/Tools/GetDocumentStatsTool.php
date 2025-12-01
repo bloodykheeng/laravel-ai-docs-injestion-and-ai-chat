@@ -89,11 +89,11 @@ class GetDocumentStatsTool extends Tool
     public function schema(JsonSchema $schema): array
     {
         return [
-            // 'document_id' => $schema->integer()
-            //     ->description('Optional: The document ID'),
             'document_id' => $schema->integer()
-                ->description('The document ID')
-                ->required(), // <-- NOW REQUIRED
+                ->description('Optional: The document ID'),
+            // 'document_id' => $schema->integer()
+            //     ->description('The document ID')
+            //     ->required(), // <-- NOW REQUIRED
             'filename' => $schema->string()
                 ->description('Optional: Search by filename'),
         ];
