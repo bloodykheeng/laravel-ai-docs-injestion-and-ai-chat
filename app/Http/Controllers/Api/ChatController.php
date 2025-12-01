@@ -34,8 +34,8 @@ class ChatController extends Controller
             $documentName = $request->input('document_name');
             $chunkingStrategy = $request->input('chunking_strategy');
 
-            // Get the MCP tool
-            $docStatsTool = Relay::tools('documents');
+            // // Get the MCP tool
+            // $docStatsTool = Relay::tools('documents');
 
             // Generate embedding for the question
             $questionEmbedding = $this->generateEmbedding($question);
@@ -74,9 +74,9 @@ class ChatController extends Controller
             // Ask AI using Prism
             $prompt = "Based on the following context, answer the question.\n\nContext:\n{$context}\n\nQuestion: {$question}\n\nAnswer:";
 
-            // $aiResponse = $this->generateText($prompt);
+            $aiResponse = $this->generateText($prompt);
 
-            $aiResponse = $this->generateText($prompt, [...$docStatsTool]);
+            // $aiResponse = $this->generateText($prompt, [...$docStatsTool]);
 
             return response()->json([
                 'success' => true,
@@ -109,28 +109,28 @@ class ChatController extends Controller
         return $response->embeddings[0]->embedding;
     }
 
-    // private function generateText(string $prompt): string
-    // {
-    //     $response = Prism::text()
-    //         ->using(Provider::from($this->provider), $this->model)
-    //         ->withPrompt($prompt)
-    //         ->asText();
-
-    //     return $response->text;
-    // }
-
-    private function generateText(string $prompt, array $tools = []): string
+    private function generateText(string $prompt): string
     {
-        $prism = Prism::text()
+        $response = Prism::text()
             ->using(Provider::from($this->provider), $this->model)
-            ->withPrompt($prompt);
-
-        if (!empty($tools)) {
-            $prism->withMaxSteps(3)->withTools($tools);
-        }
-
-        $response = $prism->asText();
+            ->withPrompt($prompt)
+            ->asText();
 
         return $response->text;
     }
+
+    // private function generateText(string $prompt, array $tools = []): string
+    // {
+    //     $prism = Prism::text()
+    //         ->using(Provider::from($this->provider), $this->model)
+    //         ->withPrompt($prompt);
+
+    //     if (!empty($tools)) {
+    //         $prism->withMaxSteps(3)->withTools($tools);
+    //     }
+
+    //     $response = $prism->asText();
+
+    //     return $response->text;
+    // }
 }
