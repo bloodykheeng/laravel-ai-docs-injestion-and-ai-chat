@@ -18,12 +18,12 @@ class ChatController extends Controller
 
     private string $embeddingProvider = 'ollama';
     private string $embeddingModel = 'embeddinggemma';
-    // private string $provider = 'ollama';
-    // private string $model = 'gpt-oss:120b-cloud';
+    private string $provider = 'ollama';
+    private string $model = 'gpt-oss:120b-cloud';
     // private string $model = 'qwen3-coder:480b-cloud';
     // private string $model = 'claude-sonnet-4-5-20250929';
-    private string $provider = 'anthropic';
-    private string $model = 'claude-sonnet-4-5';
+    // private string $provider = 'anthropic';
+    // private string $model = 'claude-sonnet-4-5';
 
 
 

@@ -7,6 +7,15 @@ use Laravel\Mcp\Server;
 
 class SmsNotificationServer extends Server
 {
+
+    // this is a manual overide of supported version ive added this myself
+    protected array $supportedProtocolVersion = [
+        '2025-11-25',
+        '2025-06-18',
+        '2025-03-26',
+        '2024-11-05',
+    ];
+
     /**
      * The MCP server's name.
      */
